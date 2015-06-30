@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:background="@android:color/transparent"
+    android:excludeFromRecents="true"
+    tools:context="tejaswi_yerukalapudi.com.helloandroid.PersonListActivity">
+
+    <RelativeLayout
+        android:id="@+id/personListToolBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#343434"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Children"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            />
+        <Button
+            android:id="@+id/personListToolBarAddBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@android:drawable/ic_input_add"
+            android:onClick="personListToolbarAddBtnClicked"
+            />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/personListListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_below="@id/personListToolBarLayout"
+        android:divider="#BCBCBC"
+        android:dividerHeight="1dp"
+        >
+    </ListView>
+
+</RelativeLayout>
