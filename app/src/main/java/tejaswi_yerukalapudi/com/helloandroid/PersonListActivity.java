@@ -87,6 +87,10 @@ public class PersonListActivity extends Activity {
                 PersonListActivity.this.showPerson(p);
             }
         });
+
+//        View emptyView = getLayoutInflater().inflate(R.layout.person_list_empty_layout, null);
+//        addContentView(emptyView, this.mPersonListView.getLayoutParams());
+//        this.mPersonListView.setEmptyView(emptyView);
     }
 
     private void showPerson(Person p) {
