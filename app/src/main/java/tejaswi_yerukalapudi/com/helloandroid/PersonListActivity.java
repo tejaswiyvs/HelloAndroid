@@ -87,9 +87,6 @@ public class PersonListActivity extends Activity {
                 PersonListActivity.this.showPerson(p);
             }
         });
-
-        View v = LayoutInflater.from(getApplicationContext()).
-        this.mPersonListView.setEmptyView();
     }
 
     private void showPerson(Person p) {
