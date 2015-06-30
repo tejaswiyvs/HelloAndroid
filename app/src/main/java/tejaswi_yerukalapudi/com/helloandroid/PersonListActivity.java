@@ -37,6 +37,7 @@ public class PersonListActivity extends Activity {
     private static final int EDIT_PERSON_REQUEST = 20;
 
     private ListView mPersonListView;
+    private ArrayAdapter<Person> mAdapter;
     private List<Person> mPersonList;
 
     @Override
@@ -48,15 +49,15 @@ public class PersonListActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Person p = (Person) data.getSerializableExtra(PersonActivity.PERSON_KEY);
-
         if (requestCode == ADD_PERSON_REQUEST) {
             if (resultCode == RESULT_OK) {
+                Person p = (Person) data.getSerializableExtra(PersonActivity.PERSON_KEY);
                 this.mPersonList.add(p);
             }
         }
         else if (requestCode == EDIT_PERSON_REQUEST) {
             if (resultCode == RESULT_OK) {
+                Person p = (Person) data.getSerializableExtra(PersonActivity.PERSON_KEY);
                 int idx = -1;
                 for (int i = 0; i < mPersonList.size(); i++) {
                     if (mPersonList.get(i).getPersonId() == p.getPersonId()) {
@@ -68,10 +69,12 @@ public class PersonListActivity extends Activity {
                 this.mPersonList.set(idx, p);
             }
         }
+
+        this.mAdapter.notifyDataSetChanged();
     }
 
     // Event Handlers
-    public void personListToolBarAddBtn(View v) {
+    public void personListToolbarAddBtnClicked(View v) {
         this.showPerson(null);
     }
 
@@ -79,7 +82,8 @@ public class PersonListActivity extends Activity {
     private void setupList() {
         this.mPersonList = new ArrayList<Person>();
         this.mPersonListView = (ListView) findViewById(R.id.personListListView);
-        this.mPersonListView.setAdapter(new PersonListAdapter(this, R.layout.person_list_row, this.mPersonList));
+        this.mAdapter = new PersonListAdapter(this, R.layout.person_list_row, this.mPersonList);
+        this.mPersonListView.setAdapter(this.mAdapter);
         this.mPersonListView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
@@ -97,15 +101,11 @@ public class PersonListActivity extends Activity {
         Intent intent = new Intent(PersonListActivity.this, PersonActivity.class);
         if (p != null) {
             intent.putExtra(PersonActivity.PERSON_KEY, p);
-        }
-
-        if (p == null) {
-            startActivityForResult(intent, ADD_PERSON_REQUEST);
-        }
-        else {
             startActivityForResult(intent, EDIT_PERSON_REQUEST);
         }
-
+        else {
+            startActivityForResult(intent, ADD_PERSON_REQUEST);
+        }
     }
 }
 
@@ -113,7 +113,6 @@ class Person implements Serializable {
     private String personId;
     private String firstName;
     private String lastName;
-    private Date dob;
 
     public Person() {
         this.personId = UUID.randomUUID().toString();
@@ -145,14 +144,6 @@ class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getDob() {
-        return this.dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
     public String getFullName() {
         return this.lastName + ", " + this.firstName;
     }
@@ -160,15 +151,11 @@ class Person implements Serializable {
     private void writeObject(java.io.ObjectOutputStream out) throws IOException {
         out.writeObject(this.firstName);
         out.writeObject(this.lastName);
-        if (this.dob != null) {
-            out.writeLong(this.dob.getTime());
-        }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
         this.firstName = (String) in.readObject();
         this.lastName = (String) in.readObject();
-        this.dob = new Date(in.readLong());
     }
 }
 

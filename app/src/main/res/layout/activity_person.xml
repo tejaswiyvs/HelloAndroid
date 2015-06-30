@@ -7,7 +7,7 @@
     tools:context="tejaswi_yerukalapudi.com.helloandroid.PersonListActivity">
 
     <RelativeLayout
-        android:id="@+id/personListToolBarLayout"
+        android:id="@+id/personToolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#343434"
@@ -32,14 +32,41 @@
             />
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/personListListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/personFirstNameLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personToolbarLayout"
+        android:layout_alignBaseline="@+id/personFirstNameTxt"
         android:layout_margin="5dp"
-        android:layout_below="@id/personListToolBarLayout"
-        android:divider="#BCBCBC"
-        android:dividerHeight="1dp"
-        >
-    </ListView>
+        android:text="First Name:"
+        android:textSize="20dp"
+        />
+    <EditText
+        android:id="@id/personFirstNameTxt"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personToolbarLayout"
+        android:layout_toRightOf="@id/personFirstNameLbl"
+        android:layout_margin="5dp"
+        />
+    <TextView
+        android:id="@+id/personLastNameLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personFirstNameTxt"
+        android:layout_alignBaseline="@+id/personLastNameTxt"
+        android:layout_margin="5dp"
+        android:text="Last Name:"
+        android:textSize="20dp"
+        />
+    <EditText
+        android:id="@id/personLastNameTxt"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personFirstNameTxt"
+        android:layout_toRightOf="@id/personLastNameLbl"
+        android:layout_margin="5dp"
+        />
+
 </RelativeLayout>

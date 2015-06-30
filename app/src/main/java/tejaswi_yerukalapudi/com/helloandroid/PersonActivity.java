@@ -24,21 +24,29 @@ public class PersonActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
-        mPerson = (Person) savedInstanceState.get("PERSON");
 
-        if (mPerson != null) {
-            this.setupFields();
+
+        mPerson = (Person) getIntent().getSerializableExtra(PERSON_KEY);
+        if (mPerson == null) {
+            mPerson = new Person();
         }
+
+        this.setupFields();
     }
 
     public void personToolBarSaveBtnClicked(View v) {
         Intent result = new Intent();
+        this.mPerson.setFirstName(this.mFirstNameEditText.getText().toString());
+        this.mPerson.setLastName(this.mLastNameEditText.getText().toString());
         result.putExtra(PersonActivity.PERSON_KEY, this.mPerson);
         setResult(RESULT_OK, result);
+        this.finish();
     }
 
 
     private void setupFields() {
+        this.mFirstNameEditText = (EditText) findViewById(R.id.personFirstNameTxt);
+        this.mLastNameEditText = (EditText) findViewById(R.id.personLastNameTxt);
         this.mFirstNameEditText.setText(mPerson.getFirstName());
         this.mLastNameEditText.setText(mPerson.getLastName());
     }
