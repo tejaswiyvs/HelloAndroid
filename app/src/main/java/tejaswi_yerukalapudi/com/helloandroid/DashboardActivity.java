@@ -2,47 +2,51 @@ package tejaswi_yerukalapudi.com.helloandroid;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
+import tejaswi_yerukalapudi.com.helloandroid.model.*;
 
 public class DashboardActivity extends Activity {
+
+    private Spinner mDropDown;
+    private ListView mScheduledAppointmentsList;
+    private ListView mHistoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        this.bindUi();
     }
 
     public void patientListBtnClicked(View v) {
         Intent intent = new Intent(this, PersonListActivity.class);
         intent.putExtra("personId", "12345");
         startActivity(intent);
+    }
+
+    private void bindUi() {
+        this.mDropDown = (Spinner) findViewById(R.id.dashboardSpecialtySpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, android.R.array.organizationTypes, android.R.layout.simple_spinner_item);
+        this.configureAppointmentList();
+        this.configureHistoryList();
+    }
+
+    private void configureAppointmentList() {
+        this.mScheduledAppointmentsList = (ListView) findViewById(R.id.dashboardScheduledAppointmentsList);
+    }
+
+    private void configureHistoryList() {
+        this.mHistoryList = (ListView) findViewById(R.id.dashboardPatientHistoryList);
     }
 }

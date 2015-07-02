@@ -2,6 +2,7 @@ package tejaswi_yerukalapudi.com.helloandroid;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -30,12 +31,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import tejaswi_yerukalapudi.com.helloandroid.model.Person;
 
 public class PersonListActivity extends Activity {
 
     private static final int ADD_PERSON_REQUEST = 10;
     private static final int EDIT_PERSON_REQUEST = 20;
 
+    private ProgressDialog mSpinner;
     private ListView mPersonListView;
     private ArrayAdapter<Person> mAdapter;
     private List<Person> mPersonList;
@@ -45,6 +48,8 @@ public class PersonListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_list);
         this.setupList();
+
+        this.fetchData();
     }
 
     @Override
@@ -78,6 +83,21 @@ public class PersonListActivity extends Activity {
         this.showPerson(null);
     }
 
+    private void fetchData() {
+        this.showSpinner("Loading ...");
+    }
+
+    private void showSpinner(String message) {
+        this.mSpinner = new ProgressDialog(getApplicationContext());
+        this.mSpinner.setMessage(message);
+        this.mSpinner.setCancelable(false);
+        this.mSpinner.show();
+    }
+
+    private void hideSpinner() {
+        this.mSpinner.hide();
+    }
+
     // Helpers
     private void setupList() {
         this.mPersonList = new ArrayList<Person>();
@@ -106,56 +126,6 @@ public class PersonListActivity extends Activity {
         else {
             startActivityForResult(intent, ADD_PERSON_REQUEST);
         }
-    }
-}
-
-class Person implements Serializable {
-    private String personId;
-    private String firstName;
-    private String lastName;
-
-    public Person() {
-        this.personId = UUID.randomUUID().toString();
-    }
-
-    public Person(String lastName, String firstName) {
-        this();
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getPersonId() {
-        return this.personId;
-    }
-
-    public String getFirstName() {
-        return  this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFullName() {
-        return this.lastName + ", " + this.firstName;
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-        out.writeObject(this.firstName);
-        out.writeObject(this.lastName);
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
-        this.firstName = (String) in.readObject();
-        this.lastName = (String) in.readObject();
     }
 }
 

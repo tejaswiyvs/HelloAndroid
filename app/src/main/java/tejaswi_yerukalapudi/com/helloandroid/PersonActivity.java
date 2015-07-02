@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import tejaswi_yerukalapudi.com.helloandroid.model.Person;
+
 
 public class PersonActivity extends Activity {
     public static final String PERSON_KEY = "PERSON";
