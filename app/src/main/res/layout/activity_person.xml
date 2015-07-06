@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="280dp"
+    android:layout_height="wrap_content"
     android:background="@android:color/transparent"
     android:excludeFromRecents="true"
     tools:context="tejaswi_yerukalapudi.com.helloandroid.PersonListActivity">
@@ -70,20 +70,21 @@
             />
     </LinearLayout>
     <Button
-        android:id="@+id/personToolBarSaveBtn"
+        android:id="@+id/personSaveBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/personLastNameHolder"
-        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="10dp"
         android:text="Save"
-        android:onClick="personToolBarSaveBtnClicked"
+        android:onClick="personSaveBtnClicked"
         />
     <Button
         android:id="@+id/personDeleteBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/personToolBarSaveBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/personSaveBtn"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:text="Delete"
