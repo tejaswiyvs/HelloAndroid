@@ -38,8 +38,8 @@ public class PersonActivity extends Activity {
 
     public void personToolBarSaveBtnClicked(View v) {
         Intent result = new Intent();
-        this.mPerson.setFirstName(this.mFirstNameEditText.getText().toString());
-        this.mPerson.setLastName(this.mLastNameEditText.getText().toString());
+        this.mPerson.setContactName(this.mFirstNameEditText.getText().toString());
+//        this.mPerson.setLastName(this.mLastNameEditText.getText().toString());
         result.putExtra(PersonActivity.PERSON_KEY, this.mPerson);
         setResult(RESULT_OK, result);
         this.finish();
@@ -49,7 +49,7 @@ public class PersonActivity extends Activity {
     private void setupFields() {
         this.mFirstNameEditText = (EditText) findViewById(R.id.personFirstNameTxt);
         this.mLastNameEditText = (EditText) findViewById(R.id.personLastNameTxt);
-        this.mFirstNameEditText.setText(mPerson.getFirstName());
-        this.mLastNameEditText.setText(mPerson.getLastName());
+        this.mFirstNameEditText.setText(mPerson.getContactName());
+//        this.mLastNameEditText.setText(mPerson.getLastName());
     }
 }

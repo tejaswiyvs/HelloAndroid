@@ -23,15 +23,29 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import tejaswi_yerukalapudi.com.helloandroid.lib.http.ODataClient;
 import tejaswi_yerukalapudi.com.helloandroid.model.Person;
+import tejaswi_yerukalapudi.com.helloandroid.model.PersonList;
 
 public class PersonListActivity extends Activity {
 
@@ -42,13 +56,13 @@ public class PersonListActivity extends Activity {
     private ListView mPersonListView;
     private ArrayAdapter<Person> mAdapter;
     private List<Person> mPersonList;
+    private PersonList mPersonListHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_list);
         this.setupList();
-
         this.fetchData();
     }
 
@@ -65,7 +79,7 @@ public class PersonListActivity extends Activity {
                 Person p = (Person) data.getSerializableExtra(PersonActivity.PERSON_KEY);
                 int idx = -1;
                 for (int i = 0; i < mPersonList.size(); i++) {
-                    if (mPersonList.get(i).getPersonId() == p.getPersonId()) {
+                    if (mPersonList.get(i).getCustomerID() == p.getCustomerID()) {
                         idx = i;
                         break;
                     }
@@ -85,10 +99,28 @@ public class PersonListActivity extends Activity {
 
     private void fetchData() {
         this.showSpinner("Loading ...");
+        ODataClient.get("Customers", new RequestParams(), new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Gson gson = new Gson();
+                String response = new String(responseBody);
+                PersonList personList = gson.fromJson(response, PersonList.class);
+                PersonListActivity.this.mPersonListHolder = personList;
+                PersonListActivity.this.mPersonList.clear();
+                PersonListActivity.this.mPersonList.addAll(personList.getPersonList());
+                PersonListActivity.this.mAdapter.notifyDataSetChanged();
+                PersonListActivity.this.hideSpinner();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(PersonListActivity.this, "Something went wrong while trying to fetch your data. Please try again!", Toast.LENGTH_SHORT);
+            }
+        });
     }
 
     private void showSpinner(String message) {
-        this.mSpinner = new ProgressDialog(getApplicationContext());
+        this.mSpinner = new ProgressDialog(this);
         this.mSpinner.setMessage(message);
         this.mSpinner.setCancelable(false);
         this.mSpinner.show();
@@ -111,7 +143,6 @@ public class PersonListActivity extends Activity {
                 PersonListActivity.this.showPerson(p);
             }
         });
-
 //        View emptyView = getLayoutInflater().inflate(R.layout.person_list_empty_layout, null);
 //        addContentView(emptyView, this.mPersonListView.getLayoutParams());
 //        this.mPersonListView.setEmptyView(emptyView);
@@ -155,7 +186,7 @@ class PersonListAdapter extends ArrayAdapter<Person> {
             TextView tt1 = (TextView) v.findViewById(R.id.personListRowNameTextView);
 
             if (tt1 != null) {
-                tt1.setText(p.getFullName());
+                tt1.setText(p.getContactName());
             }
 
         }

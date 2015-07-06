@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="200dp"
+    android:layout_height="280dp"
     android:background="@android:color/transparent"
     android:excludeFromRecents="true"
     tools:context="tejaswi_yerukalapudi.com.helloandroid.PersonListActivity">
@@ -19,16 +19,6 @@
             android:text="Your Child"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
-            />
-        <Button
-            android:id="@+id/personToolBarSaveBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="Save"
-            android:onClick="personToolBarSaveBtnClicked"
             />
     </RelativeLayout>
     <LinearLayout
@@ -55,7 +45,9 @@
             android:layout_margin="5dp"
             />
     </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/personLastNameHolder"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/personFirstNameHolder"
         android:orientation="horizontal"
@@ -77,25 +69,24 @@
             android:layout_margin="5dp"
             />
     </LinearLayout>
-
-
-    <!--<TextView-->
-        <!--android:id="@+id/personLastNameLbl"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/personFirstNameTxt"-->
-        <!--android:layout_alignBaseline="@+id/personLastNameTxt"-->
-        <!--android:layout_margin="5dp"-->
-        <!--android:text="Last Name:"-->
-        <!--android:textSize="20dp"-->
-        <!--/>-->
-    <!--<EditText-->
-        <!--android:id="@id/personLastNameTxt"-->
-        <!--android:layout_width="200dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/personFirstNameTxt"-->
-        <!--android:layout_toRightOf="@id/personLastNameLbl"-->
-        <!--android:layout_margin="5dp"-->
-        <!--/>-->
-
+    <Button
+        android:id="@+id/personToolBarSaveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personLastNameHolder"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text="Save"
+        android:onClick="personToolBarSaveBtnClicked"
+        />
+    <Button
+        android:id="@+id/personDeleteBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personToolBarSaveBtn"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text="Delete"
+        android:onClick="personDeleteBtnClicked"
+        />
 </RelativeLayout>
