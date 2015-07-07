@@ -59,6 +59,10 @@ public class PersonListActivity extends Activity {
         this.showPerson(null);
     }
 
+    public void backBtnClicked(View v) {
+        super.onBackPressed();
+    }
+
     private void fetchData() {
         this.showSpinner("Loading ...");
         ODataClient.get("Customers", new RequestParams(), new AsyncHttpResponseHandler() {

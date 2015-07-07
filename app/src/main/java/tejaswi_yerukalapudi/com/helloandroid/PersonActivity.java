@@ -113,6 +113,10 @@ public class PersonActivity extends Activity {
         dialog.show();
     }
 
+    public void backBtnClicked(View v) {
+        super.onBackPressed();
+    }
+
     private void deletePerson() {
         this.showSpinner("Deleting..");
         ODataClient.delete(PersonActivity.this, "Customers('" + mPerson.getCustomerID() + "')", new AsyncHttpResponseHandler() {
