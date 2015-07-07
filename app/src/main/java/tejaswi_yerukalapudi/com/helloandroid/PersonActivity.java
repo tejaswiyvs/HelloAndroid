@@ -135,7 +135,7 @@ public class PersonActivity extends Activity {
     }
 
     private void postInsert(String content) throws  UnsupportedEncodingException {
-        ODataClient.postJson(PersonActivity.this, "Customers('" + mPerson.getCustomerID() + "')", content, responseHandler);
+        ODataClient.postJson(PersonActivity.this, "Customers", content, responseHandler);
     }
 
     private void performFinish(boolean deleted) {

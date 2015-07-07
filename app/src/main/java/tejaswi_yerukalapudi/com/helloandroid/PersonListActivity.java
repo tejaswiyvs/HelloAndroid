@@ -128,25 +128,18 @@ class PersonListAdapter extends ArrayAdapter<Person> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         View v = convertView;
-
         if (v == null) {
             LayoutInflater vi = LayoutInflater.from(getContext());
             v = vi.inflate(R.layout.person_list_row, parent, false);
         }
-
         Person p = getItem(position);
-
         if (p != null) {
             TextView tt1 = (TextView) v.findViewById(R.id.personListRowNameTextView);
-
             if (tt1 != null) {
                 tt1.setText(p.getContactName());
             }
-
         }
-
         return v;
     }
 }
