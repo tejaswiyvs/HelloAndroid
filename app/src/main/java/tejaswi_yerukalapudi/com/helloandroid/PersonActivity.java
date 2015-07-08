@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +15,13 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import com.squareup.okhttp.Callback;
 
 import org.apache.http.Header;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import tejaswi_yerukalapudi.com.helloandroid.lib.helper.Helper;
@@ -27,19 +32,8 @@ import tejaswi_yerukalapudi.com.helloandroid.model.Person;
 public class PersonActivity extends Activity {
     public static final String PERSON_KEY = "person";
     public static final String DELETE_FLAG = "deleted";
-
-    AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
-        @Override
-        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-            PersonActivity.this.performFinish(false);
-        }
-
-        @Override
-        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-            PersonActivity.this.hideSpinner();
-            Helper.showToast(PersonActivity.this, getString(R.string.person_network_failed_message));
-        }
-    };
+    private static final boolean RECORD_DELETED = true;
+    private static final boolean RECORD_UPDATED = false;
 
     private Person mPerson;
     private TextView mTitleTextView;
@@ -86,7 +80,7 @@ public class PersonActivity extends Activity {
         dialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
+                dialog.dismiss();
             }
         });
         dialog.show();
@@ -96,23 +90,7 @@ public class PersonActivity extends Activity {
         super.onBackPressed();
     }
 
-    private void deletePerson() {
-        this.showSpinner(getString(R.string.person_deleting_msg));
-        ODataClient.delete(PersonActivity.this, getResourcePath(), new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                PersonActivity.this.performFinish(true);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                PersonActivity.this.hideSpinner();
-                Helper.showToast(PersonActivity.this, getString(R.string.person_network_failed_message));
-            }
-        });
-    }
-
-    private void post(Person person) throws UnsupportedEncodingException {
+    private void post(Person person) throws Exception {
         Gson gson = new Gson();
         String content = gson.toJson(person);
         if (this.newRecord()) {
@@ -123,12 +101,50 @@ public class PersonActivity extends Activity {
         }
     }
 
-    private void postUpdate(String content) throws UnsupportedEncodingException {
-        ODataClient.putJson(PersonActivity.this, getResourcePath(), content, responseHandler);
+    private void postUpdate(String content) throws Exception {
+        ODataClient.patch(PersonActivity.this, getResourcePath(), content, new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                PersonActivity.this.apiError();
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    PersonActivity.this.apiError();
+                }
+                PersonActivity.this.performFinish(RECORD_UPDATED);
+            }
+        });
     }
 
     private void postInsert(String content) throws UnsupportedEncodingException {
-        ODataClient.postJson(PersonActivity.this, "Customers", content, responseHandler);
+        ODataClient.postJson(PersonActivity.this, "Customers", content, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                PersonActivity.this.performFinish(RECORD_UPDATED);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                PersonActivity.this.apiError();
+            }
+        });
+    }
+
+    private void deletePerson() {
+        this.showSpinner(getString(R.string.person_deleting_msg));
+        ODataClient.delete(PersonActivity.this, getResourcePath(), new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                PersonActivity.this.performFinish(RECORD_DELETED);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                PersonActivity.this.apiError();
+            }
+        });
     }
 
     private void performFinish(boolean deleted) {
@@ -162,6 +178,11 @@ public class PersonActivity extends Activity {
         if (this.mSpinner != null) {
             this.mSpinner.hide();
         }
+    }
+
+    private void apiError() {
+        PersonActivity.this.hideSpinner();
+        Helper.showToast(PersonActivity.this, getString(R.string.person_network_failed_message));
     }
 
     private String getResourcePath() {
