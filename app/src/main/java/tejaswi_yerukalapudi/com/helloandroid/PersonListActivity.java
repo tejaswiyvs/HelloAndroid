@@ -42,6 +42,7 @@ public class PersonListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_list);
+        this.mSpinner = new ProgressDialog(this);
         this.setupList();
         this.fetchData();
     }
@@ -88,7 +89,9 @@ public class PersonListActivity extends Activity {
     }
 
     private void showSpinner(String message) {
-        this.mSpinner = new ProgressDialog(this);
+        if (this.mSpinner.isShowing()) {
+            this.mSpinner.dismiss();
+        }
         this.mSpinner.setMessage(message);
         this.mSpinner.setCancelable(false);
         this.mSpinner.show();
@@ -96,7 +99,7 @@ public class PersonListActivity extends Activity {
 
     private void hideSpinner() {
         if (this.mSpinner != null) {
-            this.mSpinner.hide();
+            this.mSpinner.dismiss();
         }
     }
 

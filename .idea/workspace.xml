@@ -21,13 +21,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d26054c-6465-4b7c-aaa3-e5d60fb3a754" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_2_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okio_1_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/http/ODataClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/http/ODataClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="HelloAndroid.iws" />
@@ -56,11 +51,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PersonActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PersonActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45723686">
-              <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="182" column="12" selection-start-line="182" selection-start-column="12" selection-end-line="182" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1938#1975#0" expanded="true" />
@@ -69,25 +64,38 @@
                 <element signature="e#2483#2533#0" expanded="true" />
                 <element signature="e#2630#2653#0" expanded="true" />
                 <element signature="e#2948#2970#0" expanded="true" />
-                <element signature="e#3232#3233#0" expanded="true" />
-                <element signature="e#3269#3270#0" expanded="true" />
-                <element signature="e#4831#4870#0" expanded="true" />
-                <element signature="e#6670#6719#0" expanded="true" />
+                <element signature="e#3228#3229#0" expanded="true" />
+                <element signature="e#3265#3266#0" expanded="true" />
+                <element signature="e#4855#4894#0" expanded="true" />
+                <element signature="e#6785#6834#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonListActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java">
+      <file leaf-file-name="Helper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/helper/Helper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
+              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1874#1875#0" expanded="true" />
-                <element signature="e#1911#1912#0" expanded="true" />
-                <element signature="e#2982#3037#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonListActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.69846493">
+              <caret line="101" column="12" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1924#1925#0" expanded="true" />
+                <element signature="e#1961#1962#0" expanded="true" />
+                <element signature="e#2035#2090#0" expanded="true" />
+                <element signature="e#3032#3087#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1436,10 +1444,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings_person.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/Helper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/helper/Helper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/http/ODataClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/helper/Helper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonActivity.java" />
       </list>
     </option>
@@ -1770,7 +1778,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2880" height="1517" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1782,16 +1790,16 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290507" sideWeight="0.568358" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290507" sideWeight="0.5546159" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3219129" sideWeight="0.45454547" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290507" sideWeight="0.44679353" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290507" sideWeight="0.4453841" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23220578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290507" sideWeight="0.431642" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290507" sideWeight="0.431642" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1843,9 +1851,10 @@
           <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#2982#3037#0" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1961#1962#0" expanded="true" />
+            <element signature="e#2035#2090#0" expanded="true" />
+            <element signature="e#3032#3087#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1856,8 +1865,8 @@
           <caret line="74" column="36" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3326#3327#0" expanded="false" />
-            <element signature="e#3553#3554#0" expanded="false" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3265#3266#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1890,9 +1899,10 @@
           <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#2982#3037#0" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1961#1962#0" expanded="true" />
+            <element signature="e#2035#2090#0" expanded="true" />
+            <element signature="e#3032#3087#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1903,8 +1913,8 @@
           <caret line="74" column="36" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3326#3327#0" expanded="false" />
-            <element signature="e#3553#3554#0" expanded="false" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3265#3266#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1937,9 +1947,10 @@
           <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#2982#3037#0" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1961#1962#0" expanded="true" />
+            <element signature="e#2035#2090#0" expanded="true" />
+            <element signature="e#3032#3087#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1961,8 +1972,8 @@
           <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3326#3327#0" expanded="false" />
-            <element signature="e#3553#3554#0" expanded="false" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3265#3266#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1973,9 +1984,10 @@
           <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#2982#3037#0" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1961#1962#0" expanded="true" />
+            <element signature="e#2035#2090#0" expanded="true" />
+            <element signature="e#3032#3087#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1997,8 +2009,8 @@
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3326#3327#0" expanded="false" />
-            <element signature="e#3553#3554#0" expanded="false" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3265#3266#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2009,9 +2021,10 @@
           <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#2982#3037#0" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1961#1962#0" expanded="true" />
+            <element signature="e#2035#2090#0" expanded="true" />
+            <element signature="e#3032#3087#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2263,34 +2276,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/helper/Helper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#2982#3037#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2312,10 +2302,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/lib/helper/Helper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45723686">
-          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="182" column="12" selection-start-line="182" selection-start-column="12" selection-end-line="182" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1938#1975#0" expanded="true" />
@@ -2324,10 +2324,24 @@
             <element signature="e#2483#2533#0" expanded="true" />
             <element signature="e#2630#2653#0" expanded="true" />
             <element signature="e#2948#2970#0" expanded="true" />
-            <element signature="e#3232#3233#0" expanded="true" />
-            <element signature="e#3269#3270#0" expanded="true" />
-            <element signature="e#4831#4870#0" expanded="true" />
-            <element signature="e#6670#6719#0" expanded="true" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#4855#4894#0" expanded="true" />
+            <element signature="e#6785#6834#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69846493">
+          <caret line="101" column="12" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1961#1962#0" expanded="true" />
+            <element signature="e#2035#2090#0" expanded="true" />
+            <element signature="e#3032#3087#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -80,7 +80,7 @@ public class PersonActivity extends Activity {
         dialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+            dialog.dismiss();
             }
         });
         dialog.show();
@@ -112,6 +112,7 @@ public class PersonActivity extends Activity {
             public void onResponse(Response response) throws IOException {
                 if (!response.isSuccessful()) {
                     PersonActivity.this.apiError();
+                    return;
                 }
                 PersonActivity.this.performFinish(RECORD_UPDATED);
             }
@@ -165,10 +166,13 @@ public class PersonActivity extends Activity {
             this.mDeleteBtn.setEnabled(false);
             this.mDeleteBtn.setVisibility(View.GONE);
         }
+        this.mSpinner = new ProgressDialog(this);
     }
 
     private void showSpinner(String message) {
-        this.mSpinner = new ProgressDialog(this);
+        if (this.mSpinner.isShowing()) {
+            this.mSpinner.dismiss();
+        }
         this.mSpinner.setMessage(message);
         this.mSpinner.setCancelable(false);
         this.mSpinner.show();
@@ -176,7 +180,7 @@ public class PersonActivity extends Activity {
 
     private void hideSpinner() {
         if (this.mSpinner != null) {
-            this.mSpinner.hide();
+            this.mSpinner.dismiss();
         }
     }
 
