@@ -53,8 +53,8 @@
       <file leaf-file-name="PersonActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8958333">
-              <caret line="203" column="96" selection-start-line="203" selection-start-column="96" selection-end-line="203" selection-end-column="96" />
+            <state vertical-scroll-proportion="0.34210527">
+              <caret line="172" column="12" selection-start-line="172" selection-start-column="12" selection-end-line="172" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2080#2123#0" expanded="true" />
@@ -67,7 +67,7 @@
                 <element signature="e#3472#3473#0" expanded="true" />
                 <element signature="e#3509#3510#0" expanded="true" />
                 <element signature="e#5099#5138#0" expanded="true" />
-                <element signature="e#7029#7078#0" expanded="true" />
+                <element signature="e#7028#7077#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2346,8 +2346,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/tejaswi_yerukalapudi/com/helloandroid/PersonActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8958333">
-          <caret line="203" column="96" selection-start-line="203" selection-start-column="96" selection-end-line="203" selection-end-column="96" />
+        <state vertical-scroll-proportion="0.34210527">
+          <caret line="172" column="12" selection-start-line="172" selection-start-column="12" selection-end-line="172" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2080#2123#0" expanded="true" />
@@ -2360,7 +2360,7 @@
             <element signature="e#3472#3473#0" expanded="true" />
             <element signature="e#3509#3510#0" expanded="true" />
             <element signature="e#5099#5138#0" expanded="true" />
-            <element signature="e#7029#7078#0" expanded="true" />
+            <element signature="e#7028#7077#0" expanded="true" />
           </folding>
         </state>
       </provider>

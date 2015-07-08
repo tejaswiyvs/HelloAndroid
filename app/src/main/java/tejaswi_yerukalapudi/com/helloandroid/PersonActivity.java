@@ -168,7 +168,7 @@ public class PersonActivity extends Activity {
         this.mLastNameEditText = (EditText) findViewById(R.id.personLastNameTxt);
         this.mFirstNameEditText.setText(mPerson.getContactName());
         this.mDeleteBtn = (Button) findViewById(R.id.personDeleteBtn);
-        if (!this.newRecord()) {
+        if (this.newRecord()) {
             this.mDeleteBtn.setEnabled(false);
             this.mDeleteBtn.setVisibility(View.GONE);
         }
