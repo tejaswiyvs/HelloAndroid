@@ -14,14 +14,12 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.google.gson.reflect.TypeToken;
 
 import org.apache.http.Header;
-import org.apache.http.entity.StringEntity;
 
 import java.io.UnsupportedEncodingException;
 
+import tejaswi_yerukalapudi.com.helloandroid.lib.helper.Helper;
 import tejaswi_yerukalapudi.com.helloandroid.lib.http.ODataClient;
 import tejaswi_yerukalapudi.com.helloandroid.model.Person;
 
@@ -29,7 +27,6 @@ import tejaswi_yerukalapudi.com.helloandroid.model.Person;
 public class PersonActivity extends Activity {
     public static final String PERSON_KEY = "person";
     public static final String DELETE_FLAG = "deleted";
-    private static final String SAVE_FAILURE_MESSAGE = "Oops, something went wrong while trying to save your data. Please try again!";
 
     AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
         @Override
@@ -40,13 +37,11 @@ public class PersonActivity extends Activity {
         @Override
         public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
             PersonActivity.this.hideSpinner();
-            Toast t = Toast.makeText(PersonActivity.this, SAVE_FAILURE_MESSAGE, Toast.LENGTH_SHORT);
-            t.show();
+            Helper.showToast(PersonActivity.this, getString(R.string.person_network_failed_message));
         }
     };
 
     private Person mPerson;
-    private boolean mEditing;
     private TextView mTitleTextView;
     private EditText mFirstNameEditText;
     private EditText mLastNameEditText;
@@ -58,56 +53,40 @@ public class PersonActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
-
-        mEditing = true;
         mPerson = (Person) getIntent().getSerializableExtra(PERSON_KEY);
-        // If a person object wasn't passed to us explicitly, we assume the user
-        // is trying to create a new record
-        if (mPerson == null) {
-            mEditing = false;
-            mPerson = new Person();
-        }
-
+        // If a person object wasn't passed to us, assume that the caller wants to create a new record.
+        if (mPerson == null) mPerson = new Person();
         this.setupFields();
     }
 
     public void personSaveBtnClicked(View v) {
-        this.showSpinner("Saving..");
+        this.showSpinner(getString(R.string.person_saving_msg));
         this.mPerson.setContactName(this.mFirstNameEditText.getText().toString());
-        // this.mPerson.setLastName(this.mLastNameEditText.getText().toString());
-        Gson gson = new Gson();
-        String content = gson.toJson(mPerson);
         try {
-            if (this.mEditing) {
-                this.postUpdate(content);
-            }
-            else {
-                this.postInsert(content);
-            }
+            this.post(mPerson);
         }
-        catch(UnsupportedEncodingException ex) {
+        catch(Exception ex) {
             this.hideSpinner();
-            Toast t = Toast.makeText(this, SAVE_FAILURE_MESSAGE, Toast.LENGTH_SHORT);
-            t.show();
+            Helper.showToast(this, getString(R.string.person_network_failed_message));
         }
     }
 
     public void personDeleteBtnClicked(View v) {
         AlertDialog dialog = new AlertDialog.Builder(this).create();
-        dialog.setTitle("Attention");
-        dialog.setMessage("Are you sure you wish to delete record?");
+        dialog.setTitle(getString(R.string.attention));
+        dialog.setMessage(getString(R.string.person_delete_confirmation_msg));
         dialog.setCancelable(true);
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                PersonActivity.this.deletePerson();
-                dialog.dismiss();
+            PersonActivity.this.deletePerson();
+            dialog.dismiss();
             }
         });
-        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+            dialog.dismiss();
             }
         });
         dialog.show();
@@ -118,8 +97,8 @@ public class PersonActivity extends Activity {
     }
 
     private void deletePerson() {
-        this.showSpinner("Deleting..");
-        ODataClient.delete(PersonActivity.this, "Customers('" + mPerson.getCustomerID() + "')", new AsyncHttpResponseHandler() {
+        this.showSpinner(getString(R.string.person_deleting_msg));
+        ODataClient.delete(PersonActivity.this, getResourcePath(), new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 PersonActivity.this.performFinish(true);
@@ -128,17 +107,27 @@ public class PersonActivity extends Activity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 PersonActivity.this.hideSpinner();
-                Toast t = Toast.makeText(PersonActivity.this, SAVE_FAILURE_MESSAGE, Toast.LENGTH_SHORT);
-                t.show();
+                Helper.showToast(PersonActivity.this, getString(R.string.person_network_failed_message));
             }
         });
     }
 
-    private void postUpdate(String content) throws UnsupportedEncodingException {
-        ODataClient.putJson(PersonActivity.this, "Customers('" + mPerson.getCustomerID() + "')", content, responseHandler);
+    private void post(Person person) throws UnsupportedEncodingException {
+        Gson gson = new Gson();
+        String content = gson.toJson(person);
+        if (this.newRecord()) {
+            this.postInsert(content);
+        }
+        else {
+            this.postUpdate(content);
+        }
     }
 
-    private void postInsert(String content) throws  UnsupportedEncodingException {
+    private void postUpdate(String content) throws UnsupportedEncodingException {
+        ODataClient.putJson(PersonActivity.this, getResourcePath(), content, responseHandler);
+    }
+
+    private void postInsert(String content) throws UnsupportedEncodingException {
         ODataClient.postJson(PersonActivity.this, "Customers", content, responseHandler);
     }
 
@@ -156,11 +145,10 @@ public class PersonActivity extends Activity {
         this.mLastNameEditText = (EditText) findViewById(R.id.personLastNameTxt);
         this.mFirstNameEditText.setText(mPerson.getContactName());
         this.mDeleteBtn = (Button) findViewById(R.id.personDeleteBtn);
-        if (!this.mEditing) {
+        if (!this.newRecord()) {
             this.mDeleteBtn.setEnabled(false);
             this.mDeleteBtn.setVisibility(View.GONE);
         }
-//        this.mLastNameEditText.setText(mPerson.getLastName());
     }
 
     private void showSpinner(String message) {
@@ -174,5 +162,14 @@ public class PersonActivity extends Activity {
         if (this.mSpinner != null) {
             this.mSpinner.hide();
         }
+    }
+
+    private String getResourcePath() {
+        if (this.mPerson == null || this.mPerson.getCustomerID() == null || this.mPerson.getCustomerID().isEmpty()) { return "Customers"; }
+        return "Customers('" + this.mPerson.getCustomerID() + "')";
+    }
+
+    private boolean newRecord() {
+        return (this.mPerson.getCustomerID() != null && !this.mPerson.getCustomerID().isEmpty());
     }
 }

@@ -23,6 +23,7 @@ import org.apache.http.Header;
 import java.util.ArrayList;
 import java.util.List;
 
+import tejaswi_yerukalapudi.com.helloandroid.lib.helper.Helper;
 import tejaswi_yerukalapudi.com.helloandroid.lib.http.ODataClient;
 import tejaswi_yerukalapudi.com.helloandroid.model.Person;
 import tejaswi_yerukalapudi.com.helloandroid.model.PersonList;
@@ -56,13 +57,14 @@ public class PersonListActivity extends Activity {
 
     // Event Handlers
     public void personListToolbarAddBtnClicked(View v) {
-        this.showPerson(null);
+        this.showPerson(new Person());
     }
 
     public void backBtnClicked(View v) {
         super.onBackPressed();
     }
 
+    // Helpers
     private void fetchData() {
         this.showSpinner(getString(R.string.person_list_network_loading_message));
         ODataClient.get("Customers", new RequestParams(), new AsyncHttpResponseHandler() {
@@ -80,7 +82,7 @@ public class PersonListActivity extends Activity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(PersonListActivity.this, getString(R.string.person_list_network_failure_message), Toast.LENGTH_SHORT);
+                Helper.showToast(PersonListActivity.this, getString(R.string.person_list_network_failure_message));
             }
         });
     }
@@ -93,10 +95,11 @@ public class PersonListActivity extends Activity {
     }
 
     private void hideSpinner() {
-        this.mSpinner.hide();
+        if (this.mSpinner != null) {
+            this.mSpinner.hide();
+        }
     }
 
-    // Helpers
     private void setupList() {
         this.mPersonList = new ArrayList<Person>();
         this.mPersonListView = (ListView) findViewById(R.id.personListListView);
@@ -113,9 +116,7 @@ public class PersonListActivity extends Activity {
 
     private void showPerson(Person p) {
         Intent intent = new Intent(PersonListActivity.this, PersonActivity.class);
-        if (p != null) {
-            intent.putExtra(PersonActivity.PERSON_KEY, p);
-        }
+        intent.putExtra(PersonActivity.PERSON_KEY, p);
         startActivityForResult(intent, PERSON_REQUEST);
     }
 }
