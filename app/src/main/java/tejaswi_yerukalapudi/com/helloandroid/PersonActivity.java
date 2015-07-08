@@ -201,6 +201,6 @@ public class PersonActivity extends Activity {
     }
 
     private boolean newRecord() {
-        return (this.mPerson.getCustomerID() != null && !this.mPerson.getCustomerID().isEmpty());
+        return (this.mPerson.getCustomerID() == null || this.mPerson.getCustomerID().isEmpty());
     }
 }
