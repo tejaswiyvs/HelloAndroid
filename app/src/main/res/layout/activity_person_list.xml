@@ -6,6 +6,7 @@
     android:excludeFromRecents="true"
     tools:context="tejaswi_yerukalapudi.com.helloandroid.PersonListActivity">
 
+    <!-- toolbar -->
     <RelativeLayout
         android:id="@+id/personListToolBarLayout"
         android:layout_width="match_parent"

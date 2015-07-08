@@ -1,0 +1,4 @@
+<resources>
+<string name="person_list_network_failure_message">Something went wrong while trying to fetch your data. Please try again!</string>
+<string name="person_list_network_loading_message">Loading...</string>
+</resources>

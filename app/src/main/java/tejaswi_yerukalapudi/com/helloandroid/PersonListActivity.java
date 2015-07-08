@@ -64,7 +64,7 @@ public class PersonListActivity extends Activity {
     }
 
     private void fetchData() {
-        this.showSpinner("Loading ...");
+        this.showSpinner(getString(R.string.person_list_network_loading_message));
         ODataClient.get("Customers", new RequestParams(), new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -80,7 +80,7 @@ public class PersonListActivity extends Activity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(PersonListActivity.this, "Something went wrong while trying to fetch your data. Please try again!", Toast.LENGTH_SHORT);
+                Toast.makeText(PersonListActivity.this, getString(R.string.person_list_network_failure_message), Toast.LENGTH_SHORT);
             }
         });
     }
