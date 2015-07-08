@@ -54,6 +54,12 @@ public class PersonActivity extends Activity {
     }
 
     public void personSaveBtnClicked(View v) {
+        if (this.mFirstNameEditText.getText().toString().isEmpty()) {
+            this.mFirstNameEditText.requestFocus();
+            this.mFirstNameEditText.setError(getString(R.string.person_name_empty_error));
+            return;
+        }
+
         this.showSpinner(getString(R.string.person_saving_msg));
         this.mPerson.setContactName(this.mFirstNameEditText.getText().toString());
         try {
