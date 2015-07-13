@@ -25,6 +25,7 @@ import java.util.List;
 
 import tejaswi_yerukalapudi.com.helloandroid.lib.helper.Helper;
 import tejaswi_yerukalapudi.com.helloandroid.lib.http.ODataClient;
+import tejaswi_yerukalapudi.com.helloandroid.lib.http.Services.PersonService;
 import tejaswi_yerukalapudi.com.helloandroid.model.Person;
 import tejaswi_yerukalapudi.com.helloandroid.model.PersonList;
 
@@ -37,6 +38,7 @@ public class PersonListActivity extends Activity {
     private ArrayAdapter<Person> mAdapter;
     private List<Person> mPersonList;
     private PersonList mPersonListHolder;
+    private PersonService mPersonService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,8 @@ public class PersonListActivity extends Activity {
     // Helpers
     private void fetchData() {
         this.showSpinner(getString(R.string.person_list_network_loading_message));
-        ODataClient.get("Customers", new RequestParams(), new AsyncHttpResponseHandler() {
+        this.mPersonService = new PersonService();
+        this.mPersonService.getPersonList(this, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 Gson gson = new Gson();
@@ -83,6 +86,7 @@ public class PersonListActivity extends Activity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                PersonListActivity.this.hideSpinner();
                 Helper.showToast(PersonListActivity.this, getString(R.string.person_list_network_failure_message));
             }
         });
