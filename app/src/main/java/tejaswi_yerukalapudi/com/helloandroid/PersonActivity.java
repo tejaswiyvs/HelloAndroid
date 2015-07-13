@@ -26,6 +26,7 @@ import java.io.UnsupportedEncodingException;
 
 import tejaswi_yerukalapudi.com.helloandroid.lib.helper.Helper;
 import tejaswi_yerukalapudi.com.helloandroid.lib.http.ODataClient;
+import tejaswi_yerukalapudi.com.helloandroid.lib.http.Services.PersonService;
 import tejaswi_yerukalapudi.com.helloandroid.model.Person;
 
 
@@ -42,6 +43,7 @@ public class PersonActivity extends Activity {
     private EditText mDOBEditText;
     private ProgressDialog mSpinner;
     private Button mDeleteBtn;
+    private PersonService mPersonService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class PersonActivity extends Activity {
         // If a person object wasn't passed to us, assume that the caller wants to create a new record.
         if (mPerson == null) mPerson = new Person();
         this.setupFields();
+        this.mPersonService = new PersonService();
     }
 
     public void personSaveBtnClicked(View v) {
@@ -97,18 +100,16 @@ public class PersonActivity extends Activity {
     }
 
     private void post(Person person) throws Exception {
-        Gson gson = new Gson();
-        String content = gson.toJson(person);
         if (this.newRecord()) {
-            this.postInsert(content);
+            this.postInsert(person);
         }
         else {
-            this.postUpdate(content);
+            this.postUpdate(person);
         }
     }
 
-    private void postUpdate(String content) throws Exception {
-        ODataClient.patch(PersonActivity.this, getResourcePath(), content, new Callback() {
+    private void postUpdate(Person person) throws Exception {
+        this.mPersonService.updatePerson(this, person, new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
                 PersonActivity.this.apiError();
@@ -125,8 +126,8 @@ public class PersonActivity extends Activity {
         });
     }
 
-    private void postInsert(String content) throws UnsupportedEncodingException {
-        ODataClient.postJson(PersonActivity.this, "Customers", content, new AsyncHttpResponseHandler() {
+    private void postInsert(Person person) throws UnsupportedEncodingException {
+        mPersonService.addPerson(this, person, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 PersonActivity.this.performFinish(RECORD_UPDATED);
@@ -141,7 +142,7 @@ public class PersonActivity extends Activity {
 
     private void deletePerson() {
         this.showSpinner(getString(R.string.person_deleting_msg));
-        ODataClient.delete(PersonActivity.this, getResourcePath(), new AsyncHttpResponseHandler() {
+        this.mPersonService.deletePerson(this, this.mPerson.getCustomerID(), new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 PersonActivity.this.performFinish(RECORD_DELETED);
@@ -193,11 +194,6 @@ public class PersonActivity extends Activity {
     private void apiError() {
         PersonActivity.this.hideSpinner();
         Helper.showToast(PersonActivity.this, getString(R.string.person_network_failed_message));
-    }
-
-    private String getResourcePath() {
-        if (this.mPerson == null || this.mPerson.getCustomerID() == null || this.mPerson.getCustomerID().isEmpty()) { return "Customers"; }
-        return "Customers('" + this.mPerson.getCustomerID() + "')";
     }
 
     private boolean newRecord() {
